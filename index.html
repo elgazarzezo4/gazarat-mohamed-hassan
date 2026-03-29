@@ -1,149 +1,45 @@
-<!DOCTYPE html>
-<html lang="ar">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>جزارة الحاج / محمد حسن</title>
-
-<style>
-body {margin:0;font-family:Arial;background:#0d0d0d;color:white}
-
-/* Header */
-.header{
-background:linear-gradient(90deg,#800000,#cc0000);
-padding:20px;text-align:center;font-size:26px;font-weight:bold
-}
-
-/* Search */
-.search{
-padding:15px;text-align:center
-}
-.search input{
-width:90%;max-width:400px;
-padding:10px;border-radius:8px;border:none
-}
-
-/* Offer */
-.offer{
-background:#ff0000;
-text-align:center;
-padding:10px;
-font-weight:bold;
-animation:blink 1s infinite alternate
-}
-@keyframes blink{from{opacity:1}to{opacity:0.6}}
-
-/* Grid */
-.container{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-gap:15px;padding:15px
-}
-
-/* Card */
-.card{
-background:#1a1a1a;border-radius:15px;
-overflow:hidden;transition:0.3s
-}
-.card:hover{transform:scale(1.05)}
-
-.card img{
-width:100%;height:150px;object-fit:cover
-}
-
-.card-content{text-align:center;padding:10px}
-
-.price{color:#ff4d4d;font-size:18px;margin:8px 0}
-
-button{
-background:#25D366;border:none;
-padding:8px 12px;color:white;
-border-radius:6px;cursor:pointer
-}
-
-/* Rating */
-.stars{
-color:gold;font-size:14px
-}
-
-/* Map */
-.map{
-margin:20px;
-border-radius:10px;
-overflow:hidden
-}
-
-/* Footer */
-.footer{
-background:black;text-align:center;padding:15px
-}
-</style>
-</head>
-
-<body>
-
-<div class="header">
-🥩 جزارة الحاج / محمد حسن
-</div>
-
-<div class="offer">
-🔥 عرض اليوم: خصم 10% على الكبدة 🔥
-</div>
-
-<div class="search">
-<input type="text" id="search" placeholder="ابحث عن المنتج..." onkeyup="filterProducts()">
-</div>
-
-<div class="container" id="products"></div>
-
-<!-- الخريطة -->
-<div class="map">
-<iframe src="https://maps.google.com/maps?q=Damietta&t=&z=13&ie=UTF8&iwloc=&output=embed"
-width="100%" height="250"></iframe>
-</div>
-
-<div class="footer">
-📞 01037696682
-</div>
-
 <script>
 let products = [
-"لحمة من الفخدة","لحمة موزة","بيت كلاوي","ريش",
-"مفروم","بوفتيك","لحمة راس","كوارع",
-"عكوة","كبدة"
+  {name:"لحمة من الفخدة", price:"450 جنيه", img:"https://images.unsplash.com/photo-1607623814075-e51df1bdc82f"},
+  {name:"لحمة موزة", price:"430 جنيه", img:"https://images.unsplash.com/photo-1600891964599-f61ba0e24092"},
+  {name:"بيت كلاوي", price:"380 جنيه", img:"https://images.unsplash.com/photo-1604908177522-2dbb9c4a5e49"},
+  {name:"ريش", price:"400 جنيه", img:"https://images.unsplash.com/photo-1600891964279-7baf7a77384a"},
+  {name:"مفروم", price:"420 جنيه", img:"https://images.unsplash.com/photo-1600891963921-8f2453b38cde"},
+  {name:"بوفتيك", price:"470 جنيه", img:"https://images.unsplash.com/photo-1600891964202-2e9d06c7f1f5"},
+  {name:"لحمة راس", price:"350 جنيه", img:"https://images.unsplash.com/photo-1600891964352-1c4e8b8d5e4d"},
+  {name:"كوارع", price:"220 جنيه", img:"https://images.unsplash.com/photo-1598514983680-40e6aa0bfa1b"},
+  {name:"عكوة", price:"380 جنيه", img:"https://images.unsplash.com/photo-1600891964004-3b7d7f1e5f5a"},
+  {name:"كبدة", price:"420 جنيه", img:"https://images.unsplash.com/photo-1600891964075-5e4b7b7a4f4d"}
 ];
 
 function displayProducts(list){
-let html="";
-list.forEach(p=>{
-html+=`
-<div class="card">
-<img src="https://images.unsplash.com/photo-1607623814075-e51df1bdc82f">
-<div class="card-content">
-<h3>${p}</h3>
-<div class="price">420 جنيه</div>
-<div class="stars">★★★★★</div>
-<button onclick="order('${p}')">اطلب</button>
-</div>
-</div>
-`;
-});
-document.getElementById("products").innerHTML=html;
+  let html="";
+  list.forEach(p=>{
+    html+=`
+    <div class="card">
+      <img src="${p.img}">
+      <div class="card-content">
+        <h3>${p.name}</h3>
+        <div class="price">${p.price}</div>
+        <div class="stars">★★★★★</div>
+        <button onclick="order('${p.name}')">اطلب</button>
+      </div>
+    </div>
+    `;
+  });
+  document.getElementById("products").innerHTML=html;
 }
 
 function filterProducts(){
-let value=document.getElementById("search").value;
-let filtered=products.filter(p=>p.includes(value));
-displayProducts(filtered);
+  let value = document.getElementById("search").value.toLowerCase();
+  let filtered = products.filter(p => p.name.toLowerCase().includes(value));
+  displayProducts(filtered);
 }
 
 function order(product){
-let msg="عايز أطلب "+product+" من جزارة الحاج محمد حسن";
-window.location.href="https://wa.me/201037696682?text="+encodeURIComponent(msg);
+  let msg="عايز أطلب "+product+" من جزارة الحاج محمد حسن";
+  window.location.href="https://wa.me/201037696682?text="+encodeURIComponent(msg);
 }
 
 displayProducts(products);
 </script>
-
-</body>
-</html>
