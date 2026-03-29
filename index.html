@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>جزارة الحاج / محمد حسن</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial;
+    background: #0f0f0f;
+    color: white;
+}
+
+/* الهيدر */
+.header {
+    background: linear-gradient(90deg, #8b0000, #cc0000);
+    padding: 25px;
+    text-align: center;
+    font-size: 26px;
+    font-weight: bold;
+}
+
+/* سكشن رئيسي */
+.hero {
+    text-align: center;
+    padding: 20px;
+}
+
+.hero p {
+    color: #ccc;
+}
+
+/* المنتجات */
+.container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 15px;
+    padding: 20px;
+}
+
+.card {
+    background: #1a1a1a;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0,0,0,0.6);
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+
+.card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+}
+
+.card-content {
+    padding: 15px;
+    text-align: center;
+}
+
+.price {
+    color: #ff4d4d;
+    font-size: 20px;
+    margin: 10px 0;
+}
+
+button {
+    background: #25D366;
+    border: none;
+    padding: 10px 15px;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+button:hover {
+    background: #1ebc59;
+}
+
+/* الفوتر */
+.footer {
+    background: #000;
+    text-align: center;
+    padding: 15px;
+    margin-top: 20px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="header">
+🥩 جزارة الحاج / محمد حسن
+</div>
+
+<div class="hero">
+<h2>أجود أنواع اللحوم البلدي الطازجة</h2>
+<p>توصيل سريع لحد باب البيت 🚚</p>
+</div>
+
+<div class="container">
+
+<!-- منتج 1 -->
+<div class="card">
+<img src="https://images.unsplash.com/photo-1607623814075-e51df1bdc82f">
+<div class="card-content">
+<h3>لحمة بلدي</h3>
+<div class="price">420 جنيه</div>
+<p>غير شامل التوصيل</p>
+<button onclick="order('لحمة بلدي')">اطلب الآن</button>
+</div>
+</div>
+
+<!-- منتج 2 -->
+<div class="card">
+<img src="https://images.unsplash.com/photo-1604908176997-431c5c6cb43e">
+<div class="card-content">
+<h3>مفروم بلدي</h3>
+<div class="price">420 جنيه</div>
+<p>غير شامل التوصيل</p>
+<button onclick="order('مفروم')">اطلب الآن</button>
+</div>
+</div>
+
+<!-- منتج 3 -->
+<div class="card">
+<img src="https://images.unsplash.com/photo-1603048719539-9ecb9b2b805d">
+<div class="card-content">
+<h3>كبدة</h3>
+<div class="price">420 جنيه</div>
+<p>غير شامل التوصيل</p>
+<button onclick="order('كبدة')">اطلب الآن</button>
+</div>
+</div>
+
+</div>
+
+<div class="footer">
+📞 01037696682
+</div>
+
+<script>
+function order(product) {
+    let message = "عايز أطلب " + product + " من جزارة الحاج محمد حسن";
+    window.location.href = "https://wa.me/201037696682?text=" + encodeURIComponent(message);
+}
+</script>
+
+</body>
+</html>
